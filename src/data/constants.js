@@ -13,24 +13,24 @@ export const COLORS = {
 export const PROJECTS = [
   {
     num: "01",
-    name: "Project Alpha",
-    desc: "A short description of what this project does, the problem it solves, and who it's for.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    repo: "https://github.com/efayadv",
+    name: "Gravity Simulation",
+    desc: "Little gravity simulator with balls and adjustable G force.",
+    tags: ["C++"],
+    repo: "https://github.com/efayadv/gravity_simulation",
   },
   {
     num: "02",
-    name: "Project Beta",
-    desc: "Another project. What technologies did you use? What did you learn? What makes it interesting?",
-    tags: ["Python", "Flask", "REST API"],
-    repo: "https://github.com/efayadv",
+    name: "Villart Website",
+    desc: "Website for my mom's art classes, clients are able to signup for classes and timeslots",
+    tags: ["Javascript", "PostreSQL", "React", "Next.js"],
+    repo: "https://github.com/efayadv/villart",
   },
   {
     num: "03",
-    name: "Project Gamma",
-    desc: "Replace these placeholders with your real projects, GitHub links, and tech stacks.",
-    tags: ["TypeScript", "Next.js", "Tailwind"],
-    repo: "https://github.com/efayadv",
+    name: "Marian Book Website",
+    desc: "Website where my sister sells her book. Check it out!",
+    tags: ["Javascript", "Next.js", "Tailwind"],
+    repo: "https://github.com/efayadv/marian_book_website",
   },
 ];
 
