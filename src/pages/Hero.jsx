@@ -86,8 +86,8 @@ export default function Hero({ setBig }) {
           animation: "fadeUp 0.7s ease forwards",
           opacity: 0, animationDelay: "0.8s",
         }}>
-          Building things for the web.<br />
-          Clean code. Thoughtful interfaces. Real results.
+          Avid risk taker, both in the real and digital world.<br />
+          Currently very interested in applied ML.
         </p>
 
         {/* CTAs */}

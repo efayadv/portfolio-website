@@ -13,20 +13,27 @@ export const COLORS = {
 export const PROJECTS = [
   {
     num: "01",
+    name: "Language Compiler",
+    desc: "Took a deep dive into learning more about compilers. I made one to turn Bach into executable MIPS",
+    tags: ["Java", "JUnit", "Some Assembly"],
+    repo: "https://github.com/efayadv/Compiler_project",
+  },
+  {
+    num: "02",
     name: "Gravity Simulation",
     desc: "Little gravity simulator with balls and adjustable G force.",
     tags: ["C++"],
     repo: "https://github.com/efayadv/gravity_simulation",
   },
   {
-    num: "02",
+    num: "03",
     name: "Villart Website",
     desc: "Website for my mom's art classes, clients are able to signup for classes and timeslots",
     tags: ["Javascript", "PostreSQL", "React", "Next.js"],
     repo: "https://github.com/efayadv/villart",
   },
   {
-    num: "03",
+    num: "04",
     name: "Marian Book Website",
     desc: "Website where my sister sells her book. Check it out!",
     tags: ["Javascript", "Next.js", "Tailwind"],
