@@ -42,8 +42,7 @@ export default function Contact({ setBig }) {
             fontFamily: "'Share Tech Mono',monospace",
             fontSize: 13, color: COLORS.grey, lineHeight: 1.9, marginBottom: 28,
           }}>
-            Got a project in mind, a role you think I'd be great for, or just want
-            to connect? I'm always open to interesting conversations.
+            Please feel free to contact me for any roles you might find me a good fit for, or even ideas where we can build something together.
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>

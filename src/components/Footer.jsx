@@ -15,7 +15,7 @@ export default function Footer() {
     }}>
       <span>© 2026 Emilio Fayad</span>
       <span>
-        Built with <span style={{ color: COLORS.green }}>⬡</span> and caffeine
+        Built with <span style={{ color: COLORS.green }}>❤️</span>
       </span>
       <a
         href="https://github.com/efayadv"

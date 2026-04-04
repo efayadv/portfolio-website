@@ -1,7 +1,13 @@
-import { COLORS, SKILLS } from "../data/constants";
-import { SectionHeader, SkillBar, Btn } from "../components/UI";
+import { useState } from "react";
+import { COLORS } from "../data/constants";
+import { SectionHeader } from "../components/UI";
+
+// 👇 Drop your resume PDF into the /public folder and update this path
+const RESUME_PDF = "/Resume_Fayad_Emilio.pdf";
 
 export default function Resume({ setBig }) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <section
       id="resume"
@@ -12,107 +18,143 @@ export default function Resume({ setBig }) {
         borderTop: `1px solid ${COLORS.border}`,
       }}
     >
-      <SectionHeader label="// 02 — background" title="Résumé" />
-
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1.6fr",
-        gap: "3rem",
         maxWidth: 900,
+        margin: "0 auto",
       }}>
-        {/* ── Left column ── */}
-        <div>
-          <ResumeBlock title="Skills">
-            {SKILLS.map((s, i) => (
-              <SkillBar key={s.label} label={s.label} pct={s.pct} i={i} />
-            ))}
-          </ResumeBlock>
+        <div style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 16,
+          marginBottom: 32,
+        }}>
+          <SectionHeader label="// 02 — background" title="Résumé" />
 
-          <ResumeBlock title="Education">
-            <ResumeItem
-              title="B.S. Computer Science"
-              sub="Your University"
-              date="20XX — 20XX"
-            />
-          </ResumeBlock>
-
-          <Btn
-            href="#"
-            onClick={(e) => { e.preventDefault(); alert("Replace with a link to your resume PDF."); }}
-            setBig={setBig}
+          {/* Download button */}
+          <a
+            href={RESUME_PDF}
+            download="Emilio_Fayad_Resume.pdf"
+            onMouseEnter={() => setBig(true)}
+            onMouseLeave={() => setBig(false)}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "10px 20px",
+              fontFamily: "'Share Tech Mono',monospace",
+              fontSize: 11,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              border: `1px solid ${COLORS.green}`,
+              color: COLORS.green,
+              textDecoration: "none",
+              cursor: "none",
+              marginBottom: 48,
+              transition: "background 0.2s, color 0.2s",
+              whiteSpace: "nowrap",
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = COLORS.green;
+              e.currentTarget.style.color = COLORS.bg;
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.color = COLORS.green;
+            }}
           >
             ↓ download résumé
-          </Btn>
+          </a>
         </div>
 
-        {/* ── Right column ── */}
-        <div>
-          <ResumeBlock title="Experience">
-            <ResumeItem
-              title="Software Developer"
-              sub="Company Name · Full-time"
-              date="Month 20XX — Present"
-              desc="Describe your responsibilities and achievements here. What did you build? What did you ship? What was the impact?"
-            />
-            <ResumeItem
-              title="Junior Developer / Intern"
-              sub="Company Name · Internship"
-              date="Month 20XX — Month 20XX"
-              desc="A brief description of what you worked on during this role. Keep it results-focused."
-            />
-          </ResumeBlock>
+        {/* PDF viewer frame */}
+        <div style={{
+          position: "relative",
+          border: `1px solid ${COLORS.border}`,
+          background: COLORS.bg2,
+        }}>
+          {/* Terminal title bar */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "10px 16px",
+            borderBottom: `1px solid ${COLORS.border}`,
+            background: "#0d0d0d",
+          }}>
+            {["#ff5f56", "#ffbd2e", "#27c93f"].map(c => (
+              <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
+            ))}
+            <span style={{
+              fontFamily: "'Share Tech Mono',monospace",
+              fontSize: 10,
+              color: COLORS.grey,
+              margin: "0 auto",
+              letterSpacing: 1,
+            }}>
+              emilio_fayad_resume.pdf
+            </span>
+          </div>
 
-          <ResumeBlock title="Certifications &amp; Extras">
-            <ResumeItem title="Your Certification" sub="Issuing Body · 20XX" />
-            <ResumeItem title="Open Source Contribution" sub="Brief note" />
-          </ResumeBlock>
+          {/* Loading state */}
+          {!loaded && (
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              top: 37,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "'Share Tech Mono',monospace",
+              fontSize: 13,
+              color: COLORS.grey,
+              letterSpacing: 2,
+              zIndex: 1,
+            }}>
+              <span style={{ color: COLORS.green }}>$</span>&nbsp;loading resume.pdf
+              <span style={{ animation: "blink 1s step-end infinite" }}>_</span>
+            </div>
+          )}
+
+          <iframe
+            src={`${RESUME_PDF}#toolbar=0&navpanes=0&scrollbar=0`}
+            title="Emilio Fayad Resume"
+            onLoad={() => setLoaded(true)}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "80vh",
+              border: "none",
+              opacity: loaded ? 1 : 0,
+              transition: "opacity 0.4s ease",
+            }}
+          />
         </div>
+
+        {/* Fallback message */}
+        <p style={{
+          fontFamily: "'Share Tech Mono',monospace",
+          fontSize: 11,
+          color: COLORS.grey,
+          marginTop: 12,
+          textAlign: "center",
+          letterSpacing: 1,
+        }}>
+          Can't see the preview?{" "}
+          <a
+            href={RESUME_PDF}
+            download
+            style={{ color: COLORS.green, textDecoration: "none" }}
+          >
+            download it directly
+          </a>
+        </p>
       </div>
+
+      <style>{`
+        @keyframes blink { 50% { opacity: 0; } }
+      `}</style>
     </section>
-  );
-}
-
-/* ── Sub-components ── */
-
-function ResumeBlock({ title, children }) {
-  return (
-    <div style={{ marginBottom: 36 }}>
-      <div style={{
-        fontFamily: "'Share Tech Mono',monospace",
-        fontSize: 11, color: COLORS.green,
-        letterSpacing: 3, textTransform: "uppercase",
-        marginBottom: 18,
-        display: "flex", alignItems: "center", gap: 12,
-      }}>
-        {title}
-        <div style={{ flex: 1, height: 1, background: COLORS.border }} />
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function ResumeItem({ title, sub, date, desc }) {
-  return (
-    <div style={{ marginBottom: 20, paddingLeft: 14, borderLeft: `1px solid #2a2a2a` }}>
-      <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 13, color: COLORS.white, marginBottom: 3 }}>
-        {title}
-      </div>
-      {sub && (
-        <div style={{ fontFamily: "'Share Tech Mono',monospace", fontSize: 12, color: COLORS.amber, marginBottom: 3 }}>
-          {sub}
-        </div>
-      )}
-      {date && (
-        <div style={{ fontFamily: "'Share Tech Mono',monospace", fontSize: 11, color: COLORS.grey, marginBottom: 6 }}>
-          {date}
-        </div>
-      )}
-      {desc && (
-        <div style={{ fontFamily: "'Share Tech Mono',monospace", fontSize: 12, color: "#666", lineHeight: 1.7 }}>
-          {desc}
-        </div>
-      )}
-    </div>
   );
 }
